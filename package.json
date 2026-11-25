@@ -1,0 +1,15 @@
+{
+  "name": "nova-park",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Nova Park demo website",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "express": "^4.21.2",
+    "express-session": "^1.18.1",
+    "pg": "^8.23.1"
+  }
+}

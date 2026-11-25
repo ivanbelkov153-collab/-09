@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f0e5">
+  <meta name="description" content="Вход в аккаунт Nova Park.">
+  <title>Вход — Nova Park</title>
+  <link rel="stylesheet" href="../css/auth.css">
+  <script src="../js/script.js" defer></script>
+  <script src="../js/auth.js" defer></script>
+</head>
+<body class="auth-page">
+  <header class="auth-topbar">
+    <a class="brand" href="../html/index.html"><span class="brand-mark" aria-hidden="true">NP</span><span>Nova <b>Park</b></span></a>
+    <a class="auth-back" href="../html/index.html">← На главную</a>
+  </header>
+  <main class="auth-layout">
+    <section class="auth-visual" aria-label="Nova Park">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGABAwS0ufJXAPXk1ZATOAM-xJrTc2cSB9Zh-8kofPFQ&s=10" alt="Американские горки">
+      <div class="auth-visual-shade"></div>
+      <div class="auth-visual-copy">
+        <span class="eyebrow"><span class="live-dot"></span> ТВОИ ПРИКЛЮЧЕНИЯ НАЧИНАЮТСЯ ЗДЕСЬ</span>
+        <h1>Пусть каждый<br>день будет <span>ярким</span></h1>
+        <p>Войди в аккаунт, чтобы посмотреть свои билеты и продолжить приключение.</p>
+        <div class="auth-visual-hours"><span>Режим работы</span><b>Ежедневно · 10:00—22:00</b></div>
+      </div>
+    </section>
+    <section class="auth-form-side">
+      <div class="auth-card panel">
+        <span class="eyebrow">СНОВА РАДЫ ТЕБЯ ВИДЕТЬ</span>
+        <h2>Вход в аккаунт</h2>
+        <p class="auth-intro">Войди, чтобы посмотреть свои билеты и продолжить приключение.</p>
+        <form id="auth-form" class="auth-form" data-mode="login">
+          <label>
+            <span>Email</span>
+            <input name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
+          </label>
+          <label>
+            <span>Пароль</span>
+            <input name="password" type="password" autocomplete="current-password" placeholder="Не менее 6 символов" minlength="6" required>
+          </label>
+          <p class="auth-error" id="auth-error" role="alert" aria-live="polite"></p>
+          <button class="button button-primary auth-submit" id="auth-submit" type="submit">Войти <span>→</span></button>
+        </form>
+        <p class="auth-privacy">Пароли защищены и не сохраняются в браузере.</p>
+        <p class="auth-switch-hint">Ещё нет аккаунта? <a href="../html/register.html">Зарегистрироваться</a></p>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

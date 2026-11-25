@@ -1,0 +1,322 @@
+@import url("style.css");
+
+.page {
+    display: block;
+    min-height: calc(100vh - 180px);
+}
+
+.wheel-layout {
+    min-height: 460px;
+    display: grid;
+    grid-template-columns: 1.1fr .9fr;
+    align-items: center;
+    gap: 5%;
+    overflow: hidden;
+    padding: 25px 5%;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--panel);
+    color: var(--text);
+}
+
+.wheel-stage {
+    width: min(330px, 70vw);
+    aspect-ratio: 1;
+    margin: auto;
+    position: relative;
+}
+
+.wheel {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 8px solid #f8d687;
+    background: conic-gradient(#39744c 0 72deg, #e3aa3e 72deg 144deg, #b94d35 144deg 216deg, #e3aa3e 216deg 288deg, #39744c 288deg 360deg);
+    box-shadow: 0 0 0 4px #d4bd7b, 0 5px 16px rgba(39, 53, 44, .18);
+    transition: transform 4.5s cubic-bezier(.12, .72, .12, 1);
+}
+
+.wheel::before {
+    content: "";
+    position: absolute;
+    inset: 10px;
+    border: 1px dashed rgba(255, 224, 153, .65);
+    border-radius: 50%;
+}
+
+.wheel-center {
+    position: absolute;
+    z-index: 2;
+    width: 66px;
+    height: 66px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: grid;
+    place-items: center;
+    border: 5px solid #ffdc91;
+    border-radius: 50%;
+    background: #e3aa3e;
+    color: white;
+    font-size: 30px;
+    text-shadow: 0 1px 2px rgba(39, 53, 44, .35);
+}
+
+.wheel-pointer {
+    position: absolute;
+    z-index: 3;
+    top: -16px;
+    left: calc(50% - 13px);
+    color: #ffdd8a;
+    font-size: 27px;
+    text-shadow: 0 1px 2px rgba(39, 53, 44, .35);
+}
+
+.wheel-label {
+    position: absolute;
+    color: white;
+    font-weight: 800;
+    font-size: 11px;
+    text-shadow: 0 1px 2px rgba(39, 53, 44, .35);
+}
+
+.label-one {
+    top: 17%;
+    right: 17%;
+    transform: rotate(45deg);
+}
+
+.label-two {
+    bottom: 20%;
+    right: 18%;
+    transform: rotate(45deg);
+}
+
+.label-three {
+    bottom: 10%;
+    left: 44%;
+    transform: rotate(0);
+}
+
+.label-four {
+    bottom: 20%;
+    left: 17%;
+    transform: rotate(-45deg);
+}
+
+.label-five {
+    top: 17%;
+    left: 18%;
+    transform: rotate(-45deg);
+}
+
+.wheel-info {
+    max-width: 370px;
+}
+
+.wheel-info h2 {
+    font-size: 30px;
+    line-height: 1.25;
+    margin: 12px 0;
+}
+
+.wheel-info h2 span {
+    color: #f0c05a;
+}
+
+.wheel-info p {
+    color: var(--muted);
+    line-height: 1.8;
+    font-size: 15px;
+}
+
+.wheel-info small {
+    display: block;
+    color: #85809c;
+    font-size: 13px;
+    margin-top: 13px;
+}
+
+.wheel-result {
+    min-height: 22px;
+    margin-top: 13px;
+    color: var(--purple-light);
+    font-weight: 700;
+    font-size: 12px;
+}
+
+.wheel-result.error {
+    color: #ff9299;
+}
+
+.wheel-login-actions {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+@media (max-width: 820px) {
+    .wheel-layout {
+        min-height: 0;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 28px;
+        padding: 28px 20px;
+    }
+
+    .wheel-stage {
+        width: min(300px, 80vw);
+    }
+
+    .wheel-info {
+        max-width: 520px;
+        margin: 0 auto;
+        text-align: center;
+    }
+}
+
+@media (max-width: 420px) {
+    .wheel-layout {
+        padding: 22px 14px;
+    }
+
+    .wheel-stage {
+        width: min(260px, 78vw);
+    }
+}
+
+@media (max-height: 500px) and (min-width: 821px) {
+    .wheel-layout {
+        min-height: calc(100svh - 190px);
+        padding: 10px 4%;
+        gap: 3%;
+    }
+
+    .wheel-stage {
+        width: min(205px, 28vw);
+    }
+
+    .wheel-info h2 {
+        margin: 5px 0;
+        font-size: 21px;
+    }
+
+    .wheel-info p {
+        margin-bottom: 8px;
+        font-size: 12px;
+        line-height: 1.4;
+    }
+
+    .wheel-info small {
+        margin-top: 5px;
+        font-size: 11px;
+        line-height: 1.35;
+    }
+
+    .wheel-result {
+        min-height: 16px;
+        margin-top: 4px;
+    }
+
+    .wheel-info > .button {
+        padding: 9px 13px;
+    }
+}
+
+[hidden] {
+    display: none !important;
+}
+
+.prize-modal {
+    width: min(440px, calc(100% - 32px));
+    max-width: none;
+    max-height: calc(100% - 32px);
+    padding: 0;
+    overflow: visible;
+    border: 0;
+    background: transparent;
+    color: var(--text);
+}
+
+.prize-modal::backdrop {
+    background: rgba(25, 37, 28, .62);
+    backdrop-filter: blur(4px);
+}
+
+.prize-modal-card {
+    position: relative;
+    padding: 36px 30px 30px;
+    border: 1px solid rgba(227, 170, 62, .55);
+    border-radius: 18px;
+    background:
+        radial-gradient(circle at 50% 0, rgba(208, 166, 79, .13), transparent 42%),
+        linear-gradient(145deg, #202d23, #151e18);
+    box-shadow: 0 24px 70px rgba(0, 0, 0, .55);
+    text-align: center;
+}
+
+.prize-modal-close {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    display: grid;
+    width: 34px;
+    height: 34px;
+    place-items: center;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    background: #29382c;
+    color: var(--text);
+    font-size: 23px;
+    line-height: 1;
+}
+
+.prize-modal-icon {
+    display: grid;
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 15px;
+    place-items: center;
+    border: 4px solid #f8d687;
+    border-radius: 50%;
+    background: linear-gradient(145deg, #d9b866, #a87d35);
+    color: #172019;
+    font-size: 32px;
+    box-shadow: 0 0 0 5px rgba(57, 116, 76, .12);
+}
+
+.prize-modal-card h2 {
+    margin: 8px 0;
+    color: var(--text);
+    font-size: 28px;
+}
+
+.prize-modal-card p {
+    margin: 0 auto 22px;
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.65;
+}
+
+.prize-modal[open] .prize-modal-card {
+    animation: prize-modal-appear .24s ease-out both;
+}
+
+@keyframes prize-modal-appear {
+    from {
+        opacity: 0;
+        transform: translateY(12px) scale(.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .prize-modal[open] .prize-modal-card {
+        animation: none;
+    }
+}

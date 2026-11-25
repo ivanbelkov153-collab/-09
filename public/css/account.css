@@ -1,0 +1,448 @@
+@import url("style.css");
+
+[hidden] {
+    display: none !important;
+}
+
+.profile-guest-actions .hero-actions {
+    margin-top: 15px;
+}
+
+.page {
+    display: block;
+    min-height: calc(100vh - 180px);
+}
+
+.account-layout {
+    display: grid;
+    grid-template-columns: minmax(210px, 250px) minmax(0, 1fr);
+    align-items: start;
+    gap: 20px;
+    padding-bottom: 32px;
+}
+
+.account-menu {
+    position: sticky;
+    top: 88px;
+    display: grid;
+    gap: 8px;
+    padding: 18px;
+}
+
+.account-avatar {
+    width: 58px;
+    height: 58px;
+    display: grid;
+    place-items: center;
+    margin-bottom: 4px;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    background: var(--panel-2);
+    color: var(--purple-light);
+    font-family: var(--font-heading);
+    font-size: 25px;
+}
+
+.account-menu > b {
+    overflow-wrap: anywhere;
+    font-size: 16px;
+}
+
+.account-menu > small {
+    margin-bottom: 8px;
+    color: var(--muted);
+    overflow-wrap: anywhere;
+}
+
+.account-tab {
+    width: 100%;
+    padding: 11px 12px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    background: transparent;
+    color: var(--muted);
+    text-align: left;
+    font: inherit;
+    cursor: pointer;
+}
+
+.account-tab:hover {
+    border-color: var(--line);
+    color: var(--text);
+}
+
+.account-tab.active {
+    border-color: var(--line);
+    background: var(--panel-2);
+    color: var(--purple-light);
+}
+
+.account-content {
+    min-width: 0;
+}
+
+.account-panel {
+    display: none;
+}
+
+.account-panel.active {
+    display: block;
+}
+
+.account-form-panel {
+    min-height: 230px;
+    padding: 24px;
+}
+
+.account-form-panel h2 {
+    margin: 8px 0;
+}
+
+.account-form-panel > .muted {
+    margin: 0 0 18px;
+}
+
+.section-heading.compact {
+    margin-bottom: 16px;
+}
+
+.booking-attraction-filter {
+    display: grid;
+    gap: 6px;
+    margin-bottom: 14px;
+}
+
+.booking-attraction-filter label {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.booking-attraction-filter select {
+    width: 100%;
+    min-height: 40px;
+    padding: 7px 10px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--panel-2);
+    color: var(--text);
+    font: inherit;
+}
+
+.ticket-list {
+    display: grid;
+    gap: 12px;
+}
+
+.ticket-card {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 145px;
+    align-items: center;
+    gap: 18px;
+    padding: 18px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--panel);
+}
+
+.ticket-qr-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.ticket-qr {
+    display: block;
+    width: 118px;
+    height: auto;
+    padding: 7px;
+    border-radius: 9px;
+    background: #fff;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, .2);
+}
+
+.ticket-qr-wrap small {
+    color: var(--muted);
+    font-size: 10px;
+    text-align: center;
+}
+
+.ticket-qr-open {
+    margin-top: 12px;
+}
+
+.ticket-qr-viewer {
+    position: fixed;
+    width: min(400px, calc(100vw - 32px));
+    max-width: calc(100vw - 32px);
+    max-height: calc(100vh - 32px);
+    box-sizing: border-box;
+    margin: auto;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 28px 24px 22px;
+    overflow: auto;
+    background: var(--panel);
+    color: var(--text);
+    box-shadow: 0 18px 54px rgba(0, 0, 0, .48);
+}
+
+.ticket-qr-viewer[open] {
+    display: grid;
+    justify-items: center;
+    gap: 12px;
+}
+
+.ticket-qr-viewer::backdrop {
+    background: rgba(0, 0, 0, .65);
+    backdrop-filter: blur(3px);
+}
+
+.ticket-qr-viewer h2,
+.ticket-qr-viewer p {
+    margin: 0;
+    text-align: center;
+}
+
+.ticket-qr-viewer h2 {
+    padding-inline: 20px;
+    font-size: 21px;
+}
+
+.ticket-qr-viewer .ticket-qr {
+    width: min(320px, calc(100vw - 96px));
+    padding: 12px;
+    border-radius: 12px;
+}
+
+.ticket-qr-viewer p {
+    color: var(--muted);
+}
+
+.ticket-qr-viewer-close {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    width: 32px;
+    height: 32px;
+    border: 0;
+    border-radius: 8px;
+    background: transparent;
+    color: var(--muted);
+    font-size: 24px;
+}
+
+.ticket-qr-viewer-close:hover {
+    background: var(--panel-2);
+    color: var(--text);
+}
+
+.ticket-details {
+    min-width: 0;
+}
+
+.ticket-details h3 {
+    margin: 7px 0;
+}
+
+.ticket-details p {
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.65;
+    overflow-wrap: anywhere;
+}
+
+.ticket-status {
+    display: inline-block;
+    padding: 4px 8px;
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    color: var(--green);
+    font-size: 12px;
+}
+
+.empty-tickets {
+    padding: 24px;
+    border: 1px dashed var(--line);
+    border-radius: 10px;
+    color: var(--muted);
+    text-align: center;
+}
+
+.account-form-panel .form-stack {
+    display: grid;
+    gap: 14px;
+    max-width: 520px;
+    margin-top: 20px;
+}
+
+.account-form-panel .form-stack label {
+    display: grid;
+    gap: 7px;
+    color: var(--text);
+    font-size: 14px;
+}
+
+.account-form-panel .form-stack input {
+    width: 100%;
+    min-height: 42px;
+    padding: 0 12px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    outline: none;
+    background: #111a14;
+    color: var(--text);
+    font: inherit;
+}
+
+.account-form-panel .form-stack input:focus {
+    border-color: var(--purple-light);
+}
+
+.account-form-panel .form-stack button {
+    justify-self: start;
+}
+
+.setting-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-top: 18px;
+    padding: 15px;
+    border: 1px solid var(--line);
+    border-radius: 9px;
+    background: var(--panel-2);
+}
+
+.setting-row span,
+.setting-row small {
+    display: block;
+}
+
+.setting-row small {
+    margin-top: 4px;
+    color: var(--muted);
+}
+
+.setting-row input {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--green);
+}
+
+.account-panel .summary-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--line);
+}
+
+.account-panel .summary-row b {
+    color: var(--purple-light);
+}
+
+.history-ride-list {
+    display: block;
+    margin-top: 4px;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.form-feedback {
+    min-height: 1.2em;
+    margin: 12px 0 0;
+    color: #e6b866;
+}
+
+.form-feedback.success {
+    color: var(--green);
+}
+
+.account-reward {
+    margin-bottom: 12px;
+    padding: 14px;
+}
+
+.account-reward p {
+    margin: 5px 0;
+    color: var(--muted);
+}
+
+.account-reward-qr .ticket-qr-wrap {
+    flex-direction: row;
+    justify-content: flex-start;
+    margin-top: 10px;
+}
+
+.account-reward-qr .ticket-qr {
+    width: 110px;
+}
+
+.account-reward-qr code {
+    color: var(--text);
+    font-size: 12px;
+}
+
+.empty-tickets a {
+    color: var(--purple-light);
+}
+
+@media (max-width: 920px) {
+    .account-layout {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .account-menu {
+        position: static;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .account-avatar,
+    .account-menu > b,
+    .account-menu > small {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (max-width: 520px) {
+    .account-layout {
+        gap: 14px;
+    }
+
+    .account-menu {
+        gap: 7px;
+        padding: 14px;
+    }
+
+    .account-menu > small {
+        margin-bottom: 4px;
+    }
+
+    .account-tab {
+        padding: 9px 8px;
+        font-size: 13px;
+    }
+
+    .account-form-panel {
+        padding: 18px;
+    }
+
+    .ticket-card {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .ticket-qr-wrap {
+        flex-direction: row;
+        justify-content: flex-start;
+    }
+
+    .ticket-qr {
+        width: 96px;
+    }
+
+    .ticket-qr-wrap small {
+        text-align: left;
+    }
+}

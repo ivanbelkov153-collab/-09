@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f0e5">
+  <title>Личный кабинет — Nova Park</title>
+  <link rel="stylesheet" href="../css/account.css">
+  <script src="../js/script.js" defer></script>
+  <script src="../js/account.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="../html/index.html"><span class="brand-mark" aria-hidden="true">NP</span><span>Nova <b>Park</b></span></a>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Открыть меню" aria-expanded="false">☰</button>
+      <nav class="top-nav" id="top-nav" aria-label="Основная навигация">
+        <a class="nav-link" href="../html/index.html">Главная</a>
+        <a class="nav-link" href="../html/catalog.html">Аттракционы</a>
+        <a class="nav-link" href="../html/map.html">Карта</a>
+        <a class="nav-link" href="../html/wheel.html">Колесо фортуны</a>
+        <a class="nav-link admin-only" href="../html/admin.html" hidden>Админ-панель</a>
+      </nav>
+      <div class="top-actions">
+        <a class="account-link" href="../html/account.html"><span class="account-icon" aria-hidden="true"></span><span>Профиль</span></a>
+      </div>
+    </header>
+    <aside class="sidebar" aria-label="Дополнительная навигация">
+      <div class="side-label">МЕНЮ</div>
+      <a class="side-link" href="../html/index.html"><span>⌂</span>Главная</a>
+      <a class="side-link" href="../html/catalog.html"><span>♧</span>Аттракционы</a>
+      <a class="side-link" href="../html/map.html"><span>⌖</span>Карта парка</a>
+      <a class="side-link" href="../html/wheel.html"><span>◎</span>Колесо фортуны</a>
+      <a class="side-link" href="../html/cart.html"><span>▣</span>Корзина</a>
+      <a class="side-link active" href="../html/account.html"><span>♙</span>Профиль</a>
+      <div class="sidebar-note">
+        <span class="note-icon">✦</span>
+        <b>Время приключений</b>
+        <p>Парк открыт сегодня<br>с 10:00 до 22:00</p>
+        <span class="open-status"><i></i> Сейчас открыто</span>
+      </div>
+      <a class="side-link admin-shortcut admin-only" href="../html/admin.html" hidden><span>⚙</span>Админ-панель</a>
+    </aside>
+    <main class="main-content">
+      <section class="page active">
+        <div class="page-heading">
+          <div>
+            <span class="eyebrow">ВСЁ В ОДНОМ МЕСТЕ</span>
+            <h1>Личный кабинет</h1>
+            <p>Управляй бронированиями и готовься к приключению.</p>
+          </div>
+        </div>
+        <div class="account-layout">
+          <aside class="account-menu panel">
+            <div class="account-avatar avatar" id="account-avatar">А</div>
+            <b id="account-name">Гость Nova Park</b>
+            <small id="account-email">Укажи email для просмотра бронирований</small>
+            <button class="account-tab active" data-account-tab="tickets">▣ Мои бронирования</button>
+            <button class="account-tab" data-account-tab="profile">♙ Профиль</button>
+            <button class="account-tab" data-account-tab="history">◷ История покупок</button>
+            <button class="account-tab" data-account-tab="settings" hidden>⚙ Настройки</button>
+            <button class="account-tab" id="logout-button" hidden>↪ Выйти из аккаунта</button>
+          </aside>
+          <div class="account-content">
+            <div class="account-panel active" id="account-tickets">
+              <div class="section-heading compact">
+                <div><span class="eyebrow">ТВОИ ПРИКЛЮЧЕНИЯ</span><h2>Мои бронирования</h2></div>
+                <a class="button button-ghost button-small" href="../html/catalog.html">+ Выбрать аттракционы</a>
+              </div>
+              <div class="account-reward panel" aria-labelledby="account-reward-title">
+                <b id="account-reward-title">Колесо фортуны</b>
+                <p id="account-reward-text">Войди в аккаунт, чтобы увидеть призы.</p>
+                <div id="account-reward-qr" class="account-reward-qr" hidden></div>
+                <a class="text-link" href="../html/wheel.html">Открыть колесо →</a>
+              </div>
+              <div class="booking-attraction-filter" hidden>
+                <label for="current-booking-attraction">Найти по аттракциону</label>
+                <select id="current-booking-attraction" data-booking-attraction-filter>
+                  <option value="">Все аттракционы</option>
+                </select>
+              </div>
+              <div id="ticket-list" class="ticket-list"></div>
+            </div>
+            <div class="account-panel" id="account-profile">
+              <div class="panel account-form-panel">
+                <span class="eyebrow">ПРОФИЛЬ</span>
+                <h2>Данные профиля</h2>
+                <p class="muted">Персональные данные и настройки аккаунта.</p>
+                <div id="profile-guest-actions" class="profile-guest-actions">
+                  <p class="muted">Чтобы открыть и изменить профиль, войди или создай аккаунт.</p>
+                  <div class="hero-actions">
+                    <a class="button button-primary button-small" href="../html/auth.html">Войти</a>
+                    <a class="button button-ghost button-small" href="../html/register.html">Регистрация</a>
+                  </div>
+                  <p class="form-feedback" id="profile-guest-feedback" role="status"></p>
+                </div>
+                <form id="profile-form" class="form-stack" hidden>
+                  <label>Имя<input name="name" required placeholder="Как к вам обращаться"></label>
+                  <label>Email<input name="email" type="email" readonly></label>
+                  <button class="button button-primary">Сохранить профиль</button>
+                </form>
+                <p class="form-feedback" id="profile-feedback" role="status"></p>
+              </div>
+            </div>
+            <div class="account-panel" id="account-history">
+              <div class="panel account-form-panel">
+                <span class="eyebrow">ВАШИ ПОСЕЩЕНИЯ</span>
+                <h2>История покупок</h2>
+                <div class="booking-attraction-filter" hidden>
+                  <label for="history-booking-attraction">Найти по аттракциону</label>
+                  <select id="history-booking-attraction" data-booking-attraction-filter>
+                    <option value="">Все аттракционы</option>
+                  </select>
+                </div>
+                <div id="purchase-history"></div>
+              </div>
+            </div>
+            <div class="account-panel" id="account-settings" hidden>
+              <div class="panel account-form-panel">
+                <span class="eyebrow">ПЕРСОНАЛИЗАЦИЯ</span>
+                <h2>Настройки</h2>
+                <p class="muted">Укажи максимальное количество взрослых и детей для аттракционов. В поп-апе это число можно уменьшить.</p>
+                <form id="booking-settings-form" class="form-stack">
+                  <label>Взрослые
+                    <input id="default-adult-count" type="number" min="0" max="10" value="1" required>
+                  </label>
+                  <label>Дети
+                    <input id="default-child-count" type="number" min="0" max="10" value="0" required>
+                  </label>
+                  <button class="button button-primary" type="submit">Сохранить настройки</button>
+                </form>
+                <p class="form-feedback success" id="settings-feedback" role="status"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <footer class="footer">
+        <a class="brand" href="../html/index.html"><span class="brand-mark" aria-hidden="true">NP</span><span>Nova <b>Park</b></span></a>
+        <span>© 2026 Nova Park. Приключения начинаются здесь.</span>
+        <a href="mailto:hello@novapark.example">Связаться с нами ↗</a>
+      </footer>
+    </main>
+  </div>
+  <dialog class="ticket-qr-viewer" id="ticket-qr-viewer" aria-labelledby="ticket-qr-viewer-title">
+    <button class="ticket-qr-viewer-close" id="ticket-qr-viewer-close" type="button" aria-label="Закрыть QR-код">×</button>
+    <h2 id="ticket-qr-viewer-title">QR-код бронирования</h2>
+    <div id="ticket-qr-large"></div>
+    <p id="ticket-qr-label"></p>
+  </dialog>
+</body>
+</html>

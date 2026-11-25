@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f0e5">
+  <title>Колесо фортуны — Nova Park</title>
+  <link rel="stylesheet" href="../css/wheel.css">
+  <script src="../js/script.js" defer></script>
+  <script src="../js/wheel.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="../html/index.html"><span class="brand-mark" aria-hidden="true">NP</span><span>Nova <b>Park</b></span></a>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Открыть меню" aria-expanded="false">☰</button>
+      <nav class="top-nav" id="top-nav" aria-label="Основная навигация">
+        <a class="nav-link" href="../html/index.html">Главная</a>
+        <a class="nav-link" href="../html/catalog.html">Аттракционы</a>
+        <a class="nav-link" href="../html/map.html">Карта</a>
+        <a class="nav-link active" href="../html/wheel.html">Колесо фортуны</a>
+        <a class="nav-link admin-only" href="../html/admin.html" hidden>Админ-панель</a>
+      </nav>
+      <div class="top-actions">
+        <a class="account-link" href="../html/auth.html"><span class="account-icon" aria-hidden="true"></span><span>Войти</span></a>
+      </div>
+    </header>
+    <aside class="sidebar" aria-label="Дополнительная навигация">
+      <div class="side-label">МЕНЮ</div>
+      <a class="side-link" href="../html/index.html"><span>⌂</span>Главная</a>
+      <a class="side-link" href="../html/catalog.html"><span>♧</span>Аттракционы</a>
+      <a class="side-link" href="../html/map.html"><span>⌖</span>Карта парка</a>
+      <a class="side-link active" href="../html/wheel.html"><span>◎</span>Колесо фортуны</a>
+      <a class="side-link" href="../html/cart.html"><span>▣</span>Корзина</a>
+      <a class="side-link account-side-link" href="../html/auth.html"><span>♙</span><span class="account-side-label">Войти</span></a>
+      <div class="sidebar-note">
+        <span class="note-icon">✦</span>
+        <b>Время приключений</b>
+        <p>Парк открыт сегодня<br>с 10:00 до 22:00</p>
+        <span class="open-status"><i></i> Сейчас открыто</span>
+      </div>
+      <a class="side-link admin-shortcut admin-only" href="../html/admin.html" hidden><span>⚙</span>Админ-панель</a>
+    </aside>
+    <main class="main-content">
+      <section class="page active">
+        <div class="page-heading">
+          <div>
+            <span class="eyebrow">КРУТИ И ВЫИГРЫВАЙ</span>
+            <h1>Колесо фортуны</h1>
+            <p>Один поворот — и приятный сюрприз уже рядом.</p>
+          </div>
+        </div>
+        <div class="wheel-layout">
+          <div class="wheel-stage">
+            <span class="wheel-pointer">▼</span>
+            <div class="wheel" id="fortune-wheel">
+              <div class="wheel-center">✦</div>
+              <span class="wheel-label label-one">−10%</span>
+              <span class="wheel-label label-two">−25%</span>
+              <span class="wheel-label label-three">−20%</span>
+              <span class="wheel-label label-four">−25%</span>
+              <span class="wheel-label label-five">Ещё раз</span>
+            </div>
+          </div>
+          <div class="wheel-info">
+            <span class="eyebrow">ТВОЙ ШАНС НА УДАЧУ</span>
+            <h2>Поймай волну<br><span>везения!</span></h2>
+            <p>Крути колесо фортуны и получи скидку до 25% или дополнительное вращение.</p>
+            <button class="button button-primary" id="spin-wheel">Крутить колесо <span>↻</span></button>
+            <div class="wheel-result" id="wheel-result" role="status" aria-live="polite"></div>
+            <small>Обычному аккаунту доступно одно вращение; сектор «Ещё раз» даёт ещё одно. Для администратора вращения не ограничены.</small>
+          </div>
+        </div>
+      </section>
+      <footer class="footer">
+        <a class="brand" href="../html/index.html"><span class="brand-mark" aria-hidden="true">NP</span><span>Nova <b>Park</b></span></a>
+        <span>© 2026 Nova Park. Приключения начинаются здесь.</span>
+        <a href="mailto:hello@novapark.example">Связаться с нами ↗</a>
+      </footer>
+    </main>
+  </div>
+  <dialog class="prize-modal" id="prize-modal" aria-labelledby="prize-modal-title" aria-describedby="prize-modal-message">
+    <div class="prize-modal-card">
+      <button class="prize-modal-close" id="close-prize-modal" type="button" aria-label="Закрыть окно с призом">×</button>
+      <span class="prize-modal-icon" aria-hidden="true">✦</span>
+      <span class="eyebrow">ТВОЯ УДАЧА</span>
+      <h2 id="prize-modal-title">Поздравляем!</h2>
+      <p id="prize-modal-message"></p>
+      <button class="button button-primary" id="prize-modal-ok" type="button">Здорово!</button>
+    </div>
+  </dialog>
+  <dialog class="prize-modal" id="wheel-login-modal" aria-labelledby="wheel-login-title" aria-describedby="wheel-login-message">
+    <div class="prize-modal-card">
+      <button class="prize-modal-close" id="close-wheel-login-modal" type="button" aria-label="Закрыть окно входа">×</button>
+      <span class="prize-modal-icon" aria-hidden="true">♙</span>
+      <span class="eyebrow">НУЖЕН АККАУНТ</span>
+      <h2 id="wheel-login-title">Войдите, чтобы крутить</h2>
+      <p id="wheel-login-message">Войдите в аккаунт или зарегистрируйтесь — после этого вы вернётесь к колесу.</p>
+      <div class="wheel-login-actions">
+        <a class="button button-primary" href="../html/auth.html?return=wheel">Войти</a>
+        <a class="button button-ghost" href="../html/register.html?return=wheel">Создать аккаунт</a>
+      </div>
+    </div>
+  </dialog>
+</body>
+</html>

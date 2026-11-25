@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f0e5">
+  <title>Оплата — Nova Park</title>
+  <link rel="stylesheet" href="../css/payment.css">
+  <script src="../js/script.js" defer></script>
+  <script src="../js/payment.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="../html/index.html"><span class="brand-mark" aria-hidden="true">NP</span><span>Nova <b>Park</b></span></a>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Открыть меню" aria-expanded="false">☰</button>
+      <nav class="top-nav" id="top-nav" aria-label="Основная навигация">
+        <a class="nav-link" href="../html/index.html">Главная</a>
+        <a class="nav-link" href="../html/catalog.html">Аттракционы</a>
+        <a class="nav-link" href="../html/map.html">Карта</a>
+        <a class="nav-link" href="../html/wheel.html">Колесо фортуны</a>
+        <a class="nav-link admin-only" href="../html/admin.html" hidden>Админ-панель</a>
+      </nav>
+      <div class="top-actions">
+        <a class="account-link" href="../html/auth.html"><span class="account-icon" aria-hidden="true"></span><span>Войти</span></a>
+      </div>
+    </header>
+    <aside class="sidebar" aria-label="Дополнительная навигация">
+      <div class="side-label">МЕНЮ</div>
+      <a class="side-link" href="../html/index.html"><span>⌂</span>Главная</a>
+      <a class="side-link" href="../html/catalog.html"><span>♧</span>Аттракционы</a>
+      <a class="side-link" href="../html/map.html"><span>⌖</span>Карта парка</a>
+      <a class="side-link" href="../html/wheel.html"><span>◎</span>Колесо фортуны</a>
+      <a class="side-link active" href="../html/cart.html"><span>▣</span>Корзина</a>
+      <a class="side-link account-side-link" href="../html/auth.html"><span>♙</span><span class="account-side-label">Войти</span></a>
+      <div class="sidebar-note">
+        <span class="note-icon">✦</span>
+        <b>Время приключений</b>
+        <p>Парк открыт сегодня<br>с 10:00 до 22:00</p>
+        <span class="open-status"><i></i> Сейчас открыто</span>
+      </div>
+      <a class="side-link admin-shortcut admin-only" href="../html/admin.html" hidden><span>⚙</span>Админ-панель</a>
+    </aside>
+    <main class="main-content">
+      <section class="page active">
+        <div class="page-heading">
+          <div>
+            <span class="eyebrow">ПОСЛЕДНИЙ ШАГ</span>
+            <h1>Оплата</h1>
+            <p>Проверь заказ и заверши демонстрационное оформление.</p>
+          </div>
+        </div>
+        <div class="payment-layout" id="payment-checkout">
+          <section class="payment-panel panel" aria-labelledby="payment-method-title">
+            <span class="payment-step">ШАГ 2 ИЗ 2</span>
+            <h2 id="payment-method-title">Способ оплаты</h2>
+            <div class="demo-payment-option" aria-label="Демонстрационная оплата">
+              <span class="demo-payment-icon" aria-hidden="true">◎</span>
+              <span><strong>Демо-оплата</strong><small>Без ввода данных карты и списания денег</small></span>
+              <span class="demo-check" aria-hidden="true">✓</span>
+            </div>
+            <div class="demo-notice">
+              <strong>Оплата пока не подключена</strong>
+              <p>Кнопка ниже завершит только демонстрационное оформление и создаст бронь с билетами. Деньги не списываются.</p>
+            </div>
+            <p class="payment-error" id="payment-error" role="alert" aria-live="polite"></p>
+            <button class="button button-primary full-width" id="confirm-payment" type="button" disabled>
+              Подтвердить демо-оформление <span aria-hidden="true">→</span>
+            </button>
+            <a class="payment-back-link" href="../html/cart.html">← Вернуться в корзину</a>
+          </section>
+          <aside class="payment-panel payment-summary panel" aria-labelledby="payment-summary-title">
+            <span class="eyebrow">ВАШ ЗАКАЗ</span>
+            <h2 id="payment-summary-title">Итого к оплате</h2>
+            <dl class="payment-details">
+              <div><dt>Дата посещения</dt><dd id="payment-date">—</dd></div>
+              <div><dt>Гости</dt><dd id="payment-guests">—</dd></div>
+              <div><dt>Аттракционы</dt><dd id="payment-attraction-count">—</dd></div>
+            </dl>
+            <ul class="payment-attractions" id="payment-attractions"></ul>
+            <div class="payment-costs">
+              <div><span>Сумма</span><strong id="payment-subtotal">—</strong></div>
+              <div><span>Приз</span><strong id="payment-reward">—</strong></div>
+              <div><span>Скидка</span><strong id="payment-discount">—</strong></div>
+              <div class="payment-total"><span>К оплате</span><strong id="payment-total">—</strong></div>
+            </div>
+            <p class="payment-email">Подтверждение для <strong id="payment-email">—</strong></p>
+          </aside>
+        </div>
+        <section class="payment-result panel" id="payment-result" aria-live="polite" hidden>
+          <span class="payment-result-icon" aria-hidden="true">✓</span>
+          <span class="eyebrow">ДЕМО-ОФОРМЛЕНИЕ ЗАВЕРШЕНО</span>
+          <h2>Бронь создана</h2>
+          <p id="payment-result-message"></p>
+          <p class="demo-result-note">Средства не списывались. Билеты доступны в профиле.</p>
+          <div class="payment-result-actions">
+            <a class="button button-primary" href="../html/account.html">Перейти к билетам</a>
+            <a class="button button-ghost" href="../html/catalog.html">Вернуться в каталог</a>
+          </div>
+        </section>
+        <section class="payment-result panel" id="payment-unavailable" aria-live="polite" hidden>
+          <span class="eyebrow">ЗАКАЗ НЕ НАЙДЕН</span>
+          <h2>Сначала соберите заказ</h2>
+          <p id="payment-unavailable-message">Добавьте аттракционы в корзину и выберите дату посещения.</p>
+          <a class="button button-primary" href="../html/cart.html">Вернуться в корзину</a>
+        </section>
+      </section>
+      <footer class="footer">
+        <a class="brand" href="../html/index.html"><span class="brand-mark" aria-hidden="true">NP</span><span>Nova <b>Park</b></span></a>
+        <span>© 2026 Nova Park. Приключения начинаются здесь.</span>
+        <a href="mailto:hello@novapark.example">Связаться с нами ↗</a>
+      </footer>
+    </main>
+  </div>
+</body>
+</html>

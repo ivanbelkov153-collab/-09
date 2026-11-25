@@ -1,0 +1,269 @@
+@import url("style.css");
+
+.page {
+  display: block;
+  min-height: calc(100vh - 180px);
+}
+
+.payment-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(290px, 360px);
+  gap: 20px;
+  align-items: start;
+  padding-bottom: 32px;
+}
+
+.payment-layout[hidden] {
+  display: none;
+}
+
+.payment-panel {
+  padding: 24px;
+}
+
+.payment-step,
+.payment-email,
+.payment-back-link {
+  color: var(--muted);
+}
+
+.payment-step,
+.payment-panel > .eyebrow {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+}
+
+.payment-panel h2 {
+  margin: 10px 0 20px;
+}
+
+.demo-payment-option {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 16px;
+  border: 1px solid var(--green);
+  border-radius: 12px;
+  background: var(--panel-2);
+}
+
+.demo-payment-icon,
+.demo-check {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 10px;
+  background: #25372a;
+  color: var(--green);
+  font-size: 22px;
+}
+
+.demo-payment-option > span:nth-child(2) {
+  display: grid;
+  gap: 4px;
+}
+
+.demo-payment-option small {
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+.demo-check {
+  width: 25px;
+  height: 25px;
+  margin-left: auto;
+  border-radius: 50%;
+  font-size: 14px;
+}
+
+.demo-notice {
+  margin: 18px 0;
+  padding: 14px;
+  border: 1px solid rgba(230, 184, 102, .3);
+  border-radius: 10px;
+  background: rgba(230, 184, 102, .07);
+  color: var(--text);
+}
+
+.demo-notice p {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.payment-error {
+  min-height: 1.4em;
+  color: #e6b866;
+}
+
+.payment-error:empty {
+  display: none;
+}
+
+.payment-back-link {
+  display: inline-block;
+  margin-top: 16px;
+}
+
+.payment-summary h2 {
+  margin-bottom: 16px;
+}
+
+.payment-details {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+}
+
+.payment-details > div,
+.payment-costs > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.payment-details dt,
+.payment-costs span {
+  color: var(--muted);
+}
+
+.payment-details dd {
+  margin: 0;
+  text-align: right;
+}
+
+.payment-attractions {
+  display: grid;
+  gap: 8px;
+  margin: 18px 0;
+  padding: 16px 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  list-style: none;
+}
+
+.payment-attractions li {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 13px;
+}
+
+.payment-attractions span:last-child {
+  white-space: nowrap;
+}
+
+.payment-costs {
+  display: grid;
+  gap: 10px;
+}
+
+.payment-total {
+  margin-top: 4px;
+  padding-top: 13px;
+  border-top: 1px solid var(--line);
+  font-size: 17px;
+}
+
+.payment-total strong {
+  color: var(--purple-light);
+}
+
+.payment-email {
+  margin: 18px 0 0;
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+
+.payment-email strong {
+  color: var(--text);
+}
+
+.payment-result {
+  max-width: 700px;
+  margin: 0 auto 32px;
+  padding: 32px;
+  text-align: center;
+}
+
+.payment-result[hidden] {
+  display: none;
+}
+
+.payment-result-icon {
+  display: grid;
+  width: 54px;
+  height: 54px;
+  margin: 0 auto 15px;
+  place-items: center;
+  border-radius: 50%;
+  background: #25372a;
+  color: var(--green);
+  font-size: 27px;
+}
+
+.payment-result h2 {
+  margin: 10px 0;
+}
+
+.payment-result p {
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.payment-result .demo-result-note {
+  color: #e6b866;
+}
+
+.payment-result-actions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+@media (max-width: 980px) {
+  .payment-layout {
+    grid-template-columns: minmax(0, 1fr) minmax(260px, 320px);
+    gap: 14px;
+  }
+}
+
+@media (max-width: 760px) {
+  .payment-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .payment-summary {
+    grid-row: 1;
+  }
+}
+
+@media (max-width: 680px) {
+  .payment-panel {
+    padding: 18px;
+  }
+
+  .payment-result {
+    padding: 24px 18px;
+  }
+}
+
+@media (max-width: 420px) {
+  .demo-payment-option {
+    padding: 12px;
+  }
+
+  .demo-payment-option small {
+    font-size: 12px;
+  }
+
+  .payment-result-actions {
+    flex-direction: column;
+  }
+}

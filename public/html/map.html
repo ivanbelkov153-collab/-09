@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f0e5">
+  <title>Карта парка — Nova Park</title>
+  <link rel="stylesheet" href="../css/map.css">
+  <script src="../js/script.js" defer></script>
+  <script src="../js/map.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="../html/index.html"><span class="brand-mark" aria-hidden="true">NP</span><span>Nova <b>Park</b></span></a>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Открыть меню" aria-expanded="false">☰</button>
+      <nav class="top-nav" id="top-nav" aria-label="Основная навигация">
+        <a class="nav-link" href="../html/index.html">Главная</a>
+        <a class="nav-link" href="../html/catalog.html">Аттракционы</a>
+        <a class="nav-link active" href="../html/map.html">Карта</a>
+        <a class="nav-link" href="../html/wheel.html">Колесо фортуны</a>
+        <a class="nav-link admin-only" href="../html/admin.html" hidden>Админ-панель</a>
+      </nav>
+      <div class="top-actions">
+        <a class="account-link" href="../html/auth.html"><span class="account-icon" aria-hidden="true"></span><span>Войти</span></a>
+      </div>
+    </header>
+    <aside class="sidebar" aria-label="Дополнительная навигация">
+      <div class="side-label">МЕНЮ</div>
+      <a class="side-link" href="../html/index.html"><span>⌂</span>Главная</a>
+      <a class="side-link" href="../html/catalog.html"><span>♧</span>Аттракционы</a>
+      <a class="side-link active" href="../html/map.html"><span>⌖</span>Карта парка</a>
+      <a class="side-link" href="../html/wheel.html"><span>◎</span>Колесо фортуны</a>
+      <a class="side-link" href="../html/cart.html"><span>▣</span>Корзина</a>
+      <a class="side-link account-side-link" href="../html/auth.html"><span>♙</span><span class="account-side-label">Войти</span></a>
+      <div class="sidebar-note">
+        <span class="note-icon">✦</span>
+        <b>Время приключений</b>
+        <p>Парк открыт сегодня<br>с 10:00 до 22:00</p>
+        <span class="open-status"><i></i> Сейчас открыто</span>
+      </div>
+      <a class="side-link admin-shortcut admin-only" href="../html/admin.html" hidden><span>⚙</span>Админ-панель</a>
+    </aside>
+    <main class="main-content">
+      <section class="page active" aria-labelledby="map-title">
+        <div class="page-heading">
+          <div>
+            <span class="eyebrow">ПЛАН ПАРКА</span>
+            <h1 id="map-title">Карта парка</h1>
+            <p>Наведите курсор на маркер или выберите аттракцион в списке.</p>
+          </div>
+          <a class="button button-ghost" href="../html/catalog.html">Список аттракционов <span>→</span></a>
+        </div>
+        <div class="map-toolbar" role="toolbar" aria-label="Управление картой">
+          <div class="map-controls">
+            <button class="map-control" id="map-rotate-left" aria-label="Повернуть карту влево">↶</button>
+            <button class="map-control" id="map-rotate-right" aria-label="Повернуть карту вправо">↷</button>
+            <button class="map-control" id="map-zoom-out" aria-label="Отдалить карту">−</button>
+            <button class="map-control" id="map-zoom-in" aria-label="Приблизить карту">+</button>
+            <button class="map-control map-reset" id="map-reset">Сбросить вид</button>
+          </div>
+          <span class="map-hint">Администратор может перетаскивать маркеры · Перетащите один на другой, чтобы поменять местами · Колёсико меняет масштаб</span>
+        </div>
+        <div class="map-layout" id="park-map">
+          <div class="park-map-frame">
+            <div class="map-world" id="map-world">
+              <svg class="park-map-artwork" viewBox="0 0 1000 680" role="img" aria-labelledby="park-map-title park-map-description">
+                <title id="park-map-title">План Nova Park</title>
+                <desc id="park-map-description">Дорожки, пруд, кафе, кассы, туалет и аттракционы парка.</desc>
+                <defs>
+                  <pattern id="grass" width="30" height="30" patternUnits="userSpaceOnUse">
+                    <circle cx="7" cy="8" r="1.2" fill="#728d68" opacity=".18"/>
+                    <circle cx="23" cy="22" r="1" fill="#728d68" opacity=".14"/>
+                  </pattern>
+                  <g id="tree">
+                    <circle cx="2" cy="3" r="15" fill="#314c3b" opacity=".18"/>
+                    <circle r="13" fill="#557651"/>
+                    <circle cx="-4" cy="-4" r="8" fill="#91a77a"/>
+                    <circle cx="5" cy="3" r="6" fill="#779366"/>
+                    <path d="M-5 2l3 2 3-4 4 3" fill="none" stroke="#bfd0a1" stroke-width="1.5" opacity=".8"/>
+                  </g>
+                  <g id="shrub">
+                    <circle r="7" fill="#718966"/>
+                    <circle cx="-2" cy="-2" r="4" fill="#93a681"/>
+                  </g>
+                  <clipPath id="park-edge">
+                    <path d="M102 143C84 111 126 78 174 80L792 63C852 62 899 91 914 140C928 184 919 211 935 252C947 288 929 323 933 359L931 500C930 551 894 581 843 586L180 609C125 611 85 585 77 542L66 319C64 252 74 192 102 143Z"/>
+                  </clipPath>
+                </defs>
+                <rect width="1000" height="680" fill="#eeeadd"/>
+                <path d="M102 143C84 111 126 78 174 80L792 63C852 62 899 91 914 140C928 184 919 211 935 252C947 288 929 323 933 359L931 500C930 551 894 581 843 586L180 609C125 611 85 585 77 542L66 319C64 252 74 192 102 143Z" fill="#b9c6a9" stroke="#78896c" stroke-width="3"/>
+                <g clip-path="url(#park-edge)">
+                  <rect x="65" y="52" width="880" height="575" fill="#c6d0b6"/>
+                  <rect x="65" y="52" width="880" height="575" fill="url(#grass)"/>
+                  <g stroke-width="3">
+                    <ellipse cx="374" cy="230" rx="82" ry="55" fill="#eacb8d" stroke="#b48b52"/>
+                    <circle cx="658" cy="190" r="48" fill="#e9b9a2" stroke="#b66d58"/>
+                    <circle cx="758" cy="403" r="55" fill="#9fc8cc" stroke="#5d9696"/>
+                    <circle cx="570" cy="444" r="48" fill="#d8b7ac" stroke="#a56c61"/>
+                    <rect x="257" y="386" width="132" height="76" rx="18" fill="#b4c992" stroke="#77925f"/>
+                    <ellipse cx="402" cy="501" rx="67" ry="48" fill="#d6b982" stroke="#a5834b"/>
+                  </g>
+                  <g fill="#fff1ce" opacity=".8">
+                    <circle cx="323" cy="208" r="3"/><circle cx="347" cy="190" r="2.5"/><circle cx="411" cy="202" r="3"/>
+                    <circle cx="631" cy="162" r="3"/><circle cx="684" cy="210" r="2.5"/>
+                    <circle cx="724" cy="376" r="3"/><circle cx="790" cy="425" r="2.5"/>
+                    <circle cx="549" cy="423" r="2.5"/><circle cx="590" cy="465" r="3"/>
+                    <circle cx="370" cy="484" r="2.5"/><circle cx="438" cy="516" r="3"/>
+                  </g>
+                  <g fill="#d18d66" opacity=".8">
+                    <circle cx="278" cy="403" r="3"/><circle cx="367" cy="444" r="3"/>
+                    <circle cx="293" cy="451" r="2.5"/><circle cx="349" cy="397" r="2.5"/>
+                  </g>
+                  <path d="M122 91Q205 83 274 98T431 87M754 91Q845 88 902 119M112 542Q220 570 337 546M748 553Q855 561 905 532" fill="none" stroke="#d5ddc8" stroke-width="24" opacity=".7"/>
+                  <path d="M132 167c17-34 61-48 94-30 20 11 30 33 23 54-7 23-38 37-68 31-35-6-65-25-49-55Z" fill="#9dbdb5" stroke="#769d93" stroke-width="3"/>
+                  <path d="M151 172c22-14 40 4 62-8m-45 38c16-8 30 1 43-7" fill="none" stroke="#d1dfd1" stroke-width="3" stroke-linecap="round"/>
+                  <path d="M330 347C330 255 405 182 500 182S670 255 670 347 595 512 500 512 330 439 330 347Z" fill="none" stroke="#f5f0e2" stroke-width="22"/>
+                  <path d="M330 347C330 255 405 182 500 182S670 255 670 347 595 512 500 512 330 439 330 347Z" fill="none" stroke="#c9ad7d" stroke-width="12"/>
+                  <path d="M499 595C499 545 495 500 497 455S502 389 500 346" fill="none" stroke="#f5f0e2" stroke-width="36" stroke-linecap="round"/>
+                  <path d="M499 595C499 545 495 500 497 455S502 389 500 346" fill="none" stroke="#d8cdb5" stroke-width="26" stroke-linecap="round"/>
+                  <path d="M500 347C457 325 417 300 383 276S320 235 287 205M500 347C547 317 582 286 610 253S642 214 660 185M500 347C555 365 611 385 654 406S709 432 752 441M500 347C453 365 414 391 384 418S346 457 326 489M500 347C525 385 548 421 567 458S586 502 603 544" fill="none" stroke="#f5f0e2" stroke-width="28" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M500 347C457 325 417 300 383 276S320 235 287 205M500 347C547 317 582 286 610 253S642 214 660 185M500 347C555 365 611 385 654 406S709 432 752 441M500 347C453 365 414 391 384 418S346 457 326 489M500 347C525 385 548 421 567 458S586 502 603 544" fill="none" stroke="#d8cdb5" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M383 276C409 241 427 218 457 201M610 253C598 218 598 198 611 174M654 406C694 382 728 361 759 333M384 418C351 399 321 382 292 354M567 458C616 475 659 489 697 516" fill="none" stroke="#f5f0e2" stroke-width="22" stroke-linecap="round"/>
+                  <path d="M383 276C409 241 427 218 457 201M610 253C598 218 598 198 611 174M654 406C694 382 728 361 759 333M384 418C351 399 321 382 292 354M567 458C616 475 659 489 697 516" fill="none" stroke="#d8cdb5" stroke-width="14" stroke-linecap="round"/>
+                  <circle cx="500" cy="347" r="42" fill="#e5dcc7" stroke="#f5f0e2" stroke-width="7"/>
+                  <circle cx="500" cy="347" r="30" fill="#d5c9ad"/>
+                  <text x="500" y="351" text-anchor="middle" fill="#6d715f" font-family="Arial,sans-serif" font-size="12" font-weight="600">ПЛОЩАДЬ</text>
+                  <g fill="none" stroke="#727568" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M304 231c13-41 31-47 48-21 19-40 37-34 42 3 21-26 39-11 34 15 24-12 33 6 22 25" stroke-width="12"/>
+                    <path d="M304 231c13-41 31-47 48-21 19-40 37-34 42 3 21-26 39-11 34 15 24-12 33 6 22 25" stroke="#e9ddc0" stroke-width="7"/>
+                    <path d="M312 236h132m-115-26v30m37-33v35m37-30v29m28-21v21" stroke="#8f8c79" stroke-width="2"/>
+                  </g>
+                  <text x="374" y="277" text-anchor="middle" fill="#586451" font-family="Arial,sans-serif" font-size="11">ГОРКИ</text>
+                  <g transform="translate(658 190)">
+                    <circle r="34" fill="#d8cdb5" stroke="#8d7b61" stroke-width="3"/>
+                    <circle r="26" fill="#bf7356" stroke="#f1dfbf" stroke-width="3"/>
+                    <circle r="5" fill="#f3e7d0"/>
+                    <path d="M0-25v20m18-18L4-4m22 4H5m13 18L4 4M0 25V5m-18 18L-4 4m-22-4h21m-17-18L-4-4" stroke="#f1dfbf" stroke-width="2"/>
+                    <circle cx="0" cy="-24" r="3" fill="#6e7660"/><circle cx="24" cy="0" r="3" fill="#6e7660"/>
+                    <circle cx="0" cy="24" r="3" fill="#6e7660"/><circle cx="-24" cy="0" r="3" fill="#6e7660"/>
+                  </g>
+                  <text x="658" y="239" text-anchor="middle" fill="#586451" font-family="Arial,sans-serif" font-size="11">КАРУСЕЛЬ</text>
+                  <g transform="translate(758 403)" fill="none" stroke="#727568">
+                    <circle r="39" stroke-width="6"/>
+                    <circle r="5" fill="#727568" stroke="none"/>
+                    <path d="M0-39V39M-39 0H39M-28-28L28 28M28-28L-28 28" stroke-width="2"/>
+                    <path d="M-18 35-30 57m36-22 12 22M-31 58h61" stroke-width="4" stroke-linecap="round"/>
+                    <circle cx="0" cy="-39" r="4" fill="#bf7356"/><circle cx="39" cy="0" r="4" fill="#bf7356"/>
+                    <circle cx="0" cy="39" r="4" fill="#bf7356"/><circle cx="-39" cy="0" r="4" fill="#bf7356"/>
+                  </g>
+                  <text x="758" y="474" text-anchor="middle" fill="#586451" font-family="Arial,sans-serif" font-size="11">КОЛЕСО</text>
+                  <g transform="translate(570 444)">
+                    <rect x="-25" y="-25" width="50" height="50" rx="8" fill="#ddd2ba" stroke="#8d7b61" stroke-width="3"/>
+                    <circle r="15" fill="#b77c60"/><circle r="5" fill="#f2e5ca"/>
+                  </g>
+                  <text x="570" y="482" text-anchor="middle" fill="#586451" font-family="Arial,sans-serif" font-size="11">БАШНЯ</text>
+                  <g transform="translate(323 424)">
+                    <path d="M-47-24h94v48h-94Z" fill="#b5c29f" stroke="#80916e" stroke-width="2"/>
+                    <path d="M-39 0h78m-39-17v34M-25-17v34M25-17v34" stroke="#e3dbc4" stroke-width="5"/>
+                    <use href="#shrub" x="-32" y="-10"/><use href="#shrub" x="30" y="10"/>
+                    <use href="#shrub" x="-30" y="13"/><use href="#shrub" x="31" y="-12"/>
+                  </g>
+                  <text x="323" y="466" text-anchor="middle" fill="#586451" font-family="Arial,sans-serif" font-size="11">САД</text>
+                  <g>
+                    <circle cx="708" cy="529" r="18" fill="#a96c52" stroke="#fff4dd" stroke-width="3"/>
+                    <path d="M701 525h11v10h-11zm11 2h3v5h-3m-8-7v-3m5 3v-4" fill="none" stroke="#fff4dd" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <text x="708" y="571" text-anchor="middle" fill="#586451" font-family="Arial,sans-serif" font-size="11">КАФЕ</text>
+                    <circle cx="290" cy="510" r="17" fill="#397f79" stroke="#fff4dd" stroke-width="3"/>
+                    <text x="290" y="514" text-anchor="middle" fill="#fffdf7" font-family="Arial,sans-serif" font-size="11" font-weight="700">WC</text>
+                    <text x="290" y="543" text-anchor="middle" fill="#586451" font-family="Arial,sans-serif" font-size="11">ТУАЛЕТ</text>
+                    <circle cx="500" cy="566" r="18" fill="#c48b45" stroke="#fff4dd" stroke-width="3"/>
+                    <path d="M493 566h14m-12-5v10m10-10v10" fill="none" stroke="#fffdf7" stroke-width="2" stroke-linecap="round"/>
+                    <text x="500" y="608" text-anchor="middle" fill="#586451" font-family="Arial,sans-serif" font-size="11">КАССЫ · ВХОД</text>
+                  </g>
+                  <g>
+                    <use href="#tree" x="113" y="128"/><use href="#tree" x="157" y="104"/>
+                    <use href="#tree" x="204" y="108"/><use href="#tree" x="251" y="116"/>
+                    <use href="#tree" x="289" y="102"/><use href="#tree" x="337" y="98"/>
+                    <use href="#tree" x="381" y="105"/><use href="#tree" x="435" y="93"/>
+                    <use href="#tree" x="478" y="103"/><use href="#tree" x="529" y="96"/>
+                    <use href="#tree" x="574" y="104"/><use href="#tree" x="625" y="102"/>
+                    <use href="#tree" x="704" y="102"/><use href="#tree" x="752" y="98"/>
+                    <use href="#tree" x="809" y="98"/><use href="#tree" x="864" y="108"/>
+                    <use href="#tree" x="895" y="151"/><use href="#tree" x="894" y="207"/>
+                    <use href="#tree" x="900" y="264"/><use href="#tree" x="894" y="321"/>
+                    <use href="#tree" x="897" y="376"/><use href="#tree" x="887" y="434"/>
+                    <use href="#tree" x="894" y="493"/><use href="#tree" x="855" y="553"/>
+                    <use href="#tree" x="799" y="565"/><use href="#tree" x="748" y="570"/>
+                    <use href="#tree" x="693" y="572"/><use href="#tree" x="642" y="568"/>
+                    <use href="#tree" x="588" y="574"/><use href="#tree" x="420" y="574"/>
+                    <use href="#tree" x="369" y="568"/><use href="#tree" x="222" y="572"/>
+                    <use href="#tree" x="171" y="570"/><use href="#tree" x="112" y="542"/>
+                    <use href="#tree" x="105" y="487"/><use href="#tree" x="109" y="433"/>
+                    <use href="#tree" x="102" y="373"/><use href="#tree" x="111" y="318"/>
+                    <use href="#tree" x="105" y="263"/><use href="#tree" x="113" y="209"/>
+                    <use href="#tree" x="260" y="304"/><use href="#tree" x="287" y="345"/>
+                    <use href="#tree" x="364" y="347"/><use href="#tree" x="422" y="390"/>
+                    <use href="#tree" x="445" y="443"/><use href="#tree" x="633" y="348"/>
+                    <use href="#tree" x="687" y="330"/><use href="#tree" x="810" y="317"/>
+                    <use href="#tree" x="828" y="457"/><use href="#tree" x="625" y="480"/>
+                    <use href="#tree" x="392" y="477"/><use href="#tree" x="223" y="422"/>
+                  </g>
+                  <g transform="translate(402 501)">
+                    <ellipse rx="47" ry="31" fill="#d6c9aa" stroke="#f4edd9" stroke-width="7"/>
+                    <ellipse rx="38" ry="23" fill="none" stroke="#9e684e" stroke-width="5"/>
+                    <ellipse rx="29" ry="15" fill="#b5c29f"/>
+                    <path d="M-29-12h14v10h-14zm42 0h14v10H13zM-8 9H6v10H-8z" fill="#b94d35" stroke="#fff4dd" stroke-width="2"/>
+                  </g>
+                  <text x="402" y="547" text-anchor="middle" fill="#586451" font-family="Arial,sans-serif" font-size="11">АВТОДРОМ</text>
+                  <path d="M469 611h62M478 601v21m44-21v21" stroke="#6b705f" stroke-width="4" stroke-linecap="round"/>
+                </g>
+                <path d="M102 143C84 111 126 78 174 80L792 63C852 62 899 91 914 140C928 184 919 211 935 252C947 288 929 323 933 359L931 500C930 551 894 581 843 586L180 609C125 611 85 585 77 542L66 319C64 252 74 192 102 143Z" fill="none" stroke="#78896c" stroke-width="3"/>
+              </svg>
+              <div class="map-markers" id="map-markers" aria-label="Маркеры аттракционов"></div>
+            </div>
+            <span class="map-compass" aria-hidden="true"><b>N</b><span>↑</span></span>
+          </div>
+          <aside class="map-legend" aria-label="Объекты на карте">
+            <strong>Аттракционы</strong>
+            <div class="map-attraction-list" id="map-attraction-list"></div>
+            <span class="map-legend-note"><i></i>Зоны отдыха</span>
+            <span class="map-legend-note water-note"><i></i>Пруд</span>
+            <span class="map-legend-note building-note"><i></i>Кафе и кассы</span>
+          </aside>
+        </div>
+        <div class="map-tip" id="map-tip" role="status" aria-live="polite">
+          <span class="tip-icon">⌖</span>
+          <span>Выберите аттракцион в списке, чтобы найти его на карте, или нажмите на маркер для описания.</span>
+        </div>
+      </section>
+      <footer class="footer">
+        <a class="brand" href="../html/index.html"><span class="brand-mark" aria-hidden="true">NP</span><span>Nova <b>Park</b></span></a>
+        <span>© 2026 Nova Park. Приключения начинаются здесь.</span>
+        <a href="mailto:hello@novapark.example">Связаться с нами ↗</a>
+      </footer>
+    </main>
+  </div>
+  <div class="map-attraction-popover" id="map-attraction-popover" role="dialog" aria-modal="false" aria-labelledby="map-attraction-title" hidden>
+    <button class="map-popover-close" id="map-popover-close" type="button" aria-label="Закрыть описание">×</button>
+    <span class="eyebrow">АТТРАКЦИОН</span>
+    <h2 id="map-attraction-title"></h2>
+    <p id="map-attraction-details"></p>
+    <form class="map-cart-form" id="map-cart-form">
+      <div class="map-guest-counter-row">
+        <label for="map-adult-count">Взрослые</label>
+        <div class="guest-counter" data-map-guest-counter>
+          <button type="button" data-map-guest-step="-1" data-map-guest-target="map-adult-count" aria-label="Уменьшить число взрослых">−</button>
+          <input id="map-adult-count" type="number" min="0" max="10" value="0" required>
+          <button type="button" data-map-guest-step="1" data-map-guest-target="map-adult-count" aria-label="Увеличить число взрослых">+</button>
+        </div>
+      </div>
+      <div class="map-guest-counter-row">
+        <label for="map-child-count">Дети</label>
+        <div class="guest-counter" data-map-guest-counter>
+          <button type="button" data-map-guest-step="-1" data-map-guest-target="map-child-count" aria-label="Уменьшить число детей" disabled>−</button>
+          <input id="map-child-count" type="number" min="0" max="10" value="0" required>
+          <button type="button" data-map-guest-step="1" data-map-guest-target="map-child-count" aria-label="Увеличить число детей">+</button>
+        </div>
+      </div>
+      <p class="map-cart-feedback" id="map-cart-feedback" role="status" aria-live="polite"></p>
+      <button class="button button-primary" id="map-add-to-cart" type="submit">Добавить в корзину <span aria-hidden="true">→</span></button>
+    </form>
+  </div>
+</body>
+</html>

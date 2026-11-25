@@ -1,0 +1,153 @@
+@import url("style.css");
+
+.page {
+    display: block;
+    min-height: calc(100vh - 180px);
+}
+
+.booking-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.7fr) minmax(235px, .8fr);
+    gap: 17px;
+    padding-bottom: 32px;
+}
+
+.booking-main {
+    padding: 20px;
+}
+
+.calendar-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 17px;
+}
+
+.calendar-head h2 {
+    margin: 0;
+    font-size: 14px;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+    text-align: center;
+}
+
+.calendar-weekdays {
+    padding-bottom: 8px;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.calendar-days {
+    min-height: 180px;
+}
+
+.calendar-day {
+    height: 36px;
+    width: 36px;
+    justify-self: center;
+    border: 0;
+    border-radius: 10px;
+    background: transparent;
+    color: var(--text);
+    font-size: 14px;
+}
+
+.calendar-day:hover:not(:disabled),
+.calendar-day.selected {
+    background: #42684b;
+    color: #fffdf7;
+    box-shadow: none;
+}
+
+.calendar-day:disabled,
+.calendar-day.empty {
+    cursor: default;
+    opacity: .3;
+}
+
+.calendar-day.today:not(.selected) {
+    border: 1px solid var(--purple-light);
+}
+
+.booking-summary {
+    padding: 20px;
+    align-self: start;
+    background: var(--panel);
+}
+
+.booking-email {
+    display: grid;
+    gap: 7px;
+    color: var(--text);
+    font-size: 14px;
+    margin: 12px 0;
+}
+
+.booking-attractions {
+    margin-top: 20px;
+}
+
+.booking-attractions h2 {
+    margin: 0 0 4px;
+    font-size: 17px;
+}
+
+.booking-attractions > p {
+    margin-bottom: 10px;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.booking-attraction-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 8px;
+}
+
+.booking-attraction-option {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 10px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: #17231b;
+    color: var(--text);
+    cursor: pointer;
+}
+
+.booking-attraction-option input {
+    accent-color: var(--green);
+}
+
+.booking-attraction-option span {
+    display: grid;
+    gap: 2px;
+}
+
+.booking-attraction-option small {
+    color: var(--muted);
+}
+
+.summary-row b {
+    max-width: 65%;
+    text-align: right;
+    overflow-wrap: anywhere;
+}
+
+.booking-email input {
+    height: 38px;
+    padding: 0 10px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: #111a14;
+    color: var(--text);
+}
+
+.secure-note {
+    line-height: 1.6;
+}

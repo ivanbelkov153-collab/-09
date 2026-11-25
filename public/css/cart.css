@@ -1,0 +1,298 @@
+@import url("style.css");
+
+.page {
+  display: block;
+  min-height: calc(100vh - 180px);
+}
+
+.cart-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  gap: 20px;
+  align-items: start;
+}
+
+.cart-panel,
+.cart-summary {
+  padding: 24px;
+}
+
+.cart-panel-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.cart-panel-heading h2 {
+  margin: 0;
+}
+
+.cart-panel-heading h2 span {
+  color: var(--muted);
+  font-size: .75em;
+}
+
+.cart-clear-button,
+.cart-remove-button {
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.cart-items {
+  display: grid;
+  gap: 12px;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--panel-2);
+}
+
+.cart-item h3 {
+  margin: 0 0 6px;
+}
+
+.cart-item p,
+.cart-summary p,
+.cart-empty p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.cart-item-price {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  white-space: nowrap;
+}
+
+.cart-item-price strong {
+  color: var(--purple-light);
+}
+
+.cart-summary h2 {
+  margin: 10px 0;
+}
+
+.cart-summary p {
+  margin-bottom: 22px;
+}
+
+.booking-group {
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+}
+
+.booking-group:first-child {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+
+.booking-group-title {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin: 0 0 8px;
+  font-size: 15px;
+}
+
+.booking-group-title span {
+  width: 23px;
+  height: 23px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--panel-2);
+  color: var(--green);
+  font: 700 10px var(--font-body);
+}
+
+.cart-summary .booking-group .summary-row {
+  margin: 9px 0;
+}
+
+.cart-summary .summary-row {
+  margin: 12px 0;
+}
+
+.cart-summary .summary-total {
+  margin: 18px 0;
+}
+
+.cart-back-link {
+  display: inline-block;
+  margin-top: 16px;
+  color: var(--muted);
+}
+
+.cart-empty {
+  padding: 42px 18px;
+  text-align: center;
+}
+
+.cart-empty-icon {
+  color: var(--purple-light);
+  font-size: 40px;
+}
+
+.cart-empty h2 {
+  margin: 12px 0 8px;
+}
+
+.cart-empty .button {
+  margin-top: 18px;
+}
+
+.cart-feedback {
+  margin-bottom: 12px;
+  color: #e6b866;
+}
+
+.cart-feedback:empty {
+  display: none;
+}
+
+.cart-items[hidden],
+#cart-booking-controls[hidden],
+#cart-booking-empty[hidden],
+#book-tickets[hidden] {
+  display: none;
+}
+
+.calendar-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.calendar-head h3 {
+  margin: 0;
+  font-size: 14px;
+  text-align: center;
+  text-transform: capitalize;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 3px;
+  text-align: center;
+}
+
+.calendar-weekdays {
+  padding-bottom: 6px;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.calendar-day {
+  width: 32px;
+  height: 32px;
+  justify-self: center;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text);
+  font-size: 13px;
+}
+
+.calendar-day:hover:not(:disabled),
+.calendar-day.selected {
+  background: #42684b;
+  color: #fffdf7;
+  box-shadow: none;
+}
+
+.calendar-day:disabled,
+.calendar-day.empty {
+  cursor: default;
+  opacity: .3;
+}
+
+.calendar-day.today:not(.selected) {
+  border: 1px solid var(--purple-light);
+}
+
+.cart-summary .summary-row b {
+  max-width: 65%;
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+.booking-email {
+  display: grid;
+  gap: 7px;
+  margin: 12px 0;
+  color: var(--text);
+  font-size: 14px;
+}
+
+.booking-email input {
+  height: 38px;
+  padding: 0 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #111a14;
+  color: var(--text);
+}
+
+.secure-note {
+  display: block;
+  margin-top: 10px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.booking-message {
+  margin-top: 10px;
+  color: #e6b866;
+}
+
+.booking-message:empty {
+  display: none;
+}
+
+.booking-message.success {
+  color: var(--green);
+}
+
+@media (max-width: 920px) {
+  .cart-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 520px) {
+  .cart-panel,
+  .cart-summary {
+    padding: 17px;
+  }
+
+  .cart-panel-heading {
+    align-items: flex-start;
+  }
+
+  .cart-item {
+    align-items: flex-start;
+  }
+
+  .cart-item-price {
+    align-items: flex-end;
+    flex-direction: column;
+    gap: 8px;
+  }
+}

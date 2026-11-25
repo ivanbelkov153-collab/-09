@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f0e5">
+  <title>Админ-панель — Nova Park</title>
+  <link rel="stylesheet" href="../css/admin.css">
+  <script src="../js/script.js" defer></script>
+  <script src="../js/admin.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="../html/index.html"><span class="brand-mark" aria-hidden="true">NP</span><span>Nova <b>Park</b></span></a>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Открыть меню" aria-expanded="false">☰</button>
+      <nav class="top-nav" id="top-nav" aria-label="Основная навигация">
+        <a class="nav-link" href="../html/index.html">Главная</a>
+        <a class="nav-link" href="../html/catalog.html">Аттракционы</a>
+        <a class="nav-link" href="../html/map.html">Карта</a>
+        <a class="nav-link" href="../html/wheel.html">Колесо фортуны</a>
+        <a class="nav-link active admin-only" href="../html/admin.html" hidden>Админ-панель</a>
+      </nav>
+      <div class="top-actions">
+        <a class="account-link" href="../html/auth.html"><span class="account-icon" aria-hidden="true"></span><span>Войти</span></a>
+      </div>
+    </header>
+    <aside class="sidebar" aria-label="Дополнительная навигация">
+      <div class="side-label">МЕНЮ</div>
+      <a class="side-link" href="../html/index.html"><span>⌂</span>Главная</a>
+      <a class="side-link" href="../html/catalog.html"><span>♧</span>Аттракционы</a>
+      <a class="side-link" href="../html/map.html"><span>⌖</span>Карта парка</a>
+      <a class="side-link" href="../html/wheel.html"><span>◎</span>Колесо фортуны</a>
+      <a class="side-link" href="../html/cart.html"><span>▣</span>Корзина</a>
+      <a class="side-link account-side-link" href="../html/auth.html"><span>♙</span><span class="account-side-label">Войти</span></a>
+      <div class="sidebar-note">
+        <span class="note-icon">✦</span>
+        <b>Время приключений</b>
+        <p>Парк открыт сегодня<br>с 10:00 до 22:00</p>
+        <span class="open-status"><i></i> Сейчас открыто</span>
+      </div>
+      <a class="side-link admin-shortcut active admin-only" href="../html/admin.html" hidden><span>⚙</span>Админ-панель</a>
+    </aside>
+    <main class="main-content">
+      <section class="page active">
+        <div class="page-heading">
+          <div>
+            <span class="eyebrow">УПРАВЛЕНИЕ NOVA PARK</span>
+            <h1>Панель администратора</h1>
+            <p>Аттракционы, бронирования и статистика парка.</p>
+          </div>
+        </div>
+        <div class="admin-stats">
+          <div class="admin-stat panel">
+            <span class="stat-icon">♙</span>
+            <small>Посетители</small>
+            <b>12 430</b>
+            <span class="positive">Демо-статистика</span>
+          </div>
+          <div class="admin-stat panel">
+            <span class="stat-icon">▣</span>
+            <small>Продано билетов</small>
+            <b id="admin-ticket-count">0</b>
+            <span class="positive">Локальные заказы</span>
+          </div>
+          <div class="admin-stat panel">
+            <span class="stat-icon green-icon">₽</span>
+            <small>Выручка</small>
+            <b id="admin-revenue">0 ₽</b>
+            <span class="positive">Локальные заказы</span>
+          </div>
+        </div>
+        <div class="admin-columns">
+          <div class="panel admin-panel">
+            <div class="section-heading compact">
+              <div><span class="eyebrow">КОНТЕНТ ПАРКА</span><h2>Аттракционы</h2></div>
+              <button class="button button-primary button-small" id="add-attraction-toggle">+ Добавить</button>
+            </div>
+            <form id="add-attraction-form" class="admin-add-form" hidden>
+              <label>Название<input name="name" required placeholder="Название аттракциона"></label>
+              <label>Категория
+                <select name="category">
+                  <option>Экстремальные</option>
+                  <option>Семейные</option>
+                  <option>Детские</option>
+                </select>
+              </label>
+              <label>Минимальный рост<input name="height" type="number" min="0" max="220" value="100" required></label>
+              <button class="button button-primary button-small">Сохранить</button>
+            </form>
+            <div class="admin-attraction-list" id="admin-attraction-list"></div>
+            <template id="attraction-image-sources">
+              <img data-attraction-name="Американские горки" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGABAwS0ufJXAPXk1ZATOAM-xJrTc2cSB9Zh-8kofPFQ&s=10" alt="Американские горки">
+              <img data-attraction-name="Большая карусель" src="https://moscow-sun.ru/upload/iblock/103/qzd5iu9j8vyribo5q8s1jghfyoshqd75.jpg" alt="Карусель и горки в парке развлечений">
+              <img data-attraction-name="Башня падения" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJgfFJzV2ytOoG0HX9LblXHTg2E606kIdlKENsUyduKbEdWXc6hhCrhRdf&s=10" alt="Посетители на аттракционе">
+              <img data-attraction-name="Колесо обозрения" src="https://moscow-sun.ru/upload/iblock/103/qzd5iu9j8vyribo5q8s1jghfyoshqd75.jpg" alt="Колесо обозрения и аттракционы парка">
+              <img data-attraction-name="Волшебный сад" src="https://moscow-sun.ru/upload/iblock/103/qzd5iu9j8vyribo5q8s1jghfyoshqd75.jpg" alt="Парк развлечений в солнечный день">
+              <img data-attraction-name="Автодром" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGABAwS0ufJXAPXk1ZATOAM-xJrTc2cSB9Zh-8kofPFQ&s=10" alt="Посетители на аттракционе ярмарки">
+            </template>
+          </div>
+          <div class="panel admin-panel">
+            <span class="eyebrow">ПРОВЕРКА НА ВХОДЕ</span>
+            <h2>Проверка билетов</h2>
+            <p class="muted">Отсканируй QR-код билета или приза либо введи код вручную.</p>
+            <form id="ticket-check-form" class="scanner-form">
+              <input name="ticketId" type="text" autocomplete="off" required aria-label="Номер билета или код приза" placeholder="NP-123456 или код приза">
+              <button class="button button-primary" type="submit">Проверить</button>
+            </form>
+            <button class="button button-ghost button-small scanner-camera-button" id="ticket-camera-toggle" type="button" aria-controls="ticket-camera-video" aria-pressed="false">Сканировать QR</button>
+            <video id="ticket-camera-video" class="scanner-video" aria-label="Изображение с камеры для сканирования QR-кода" playsinline muted hidden></video>
+            <div id="scanner-result" class="scanner-result" role="status" aria-live="polite"></div>
+            <div class="sales-chart">
+              <div class="chart-label"><b>Продажи билетов</b><span>Демо-график</span></div>
+              <div class="chart-bars">
+                <i style="--bar:42%"></i><i style="--bar:58%"></i><i style="--bar:47%"></i>
+                <i style="--bar:72%"></i><i style="--bar:63%"></i><i style="--bar:86%"></i><i style="--bar:100%"></i>
+              </div>
+              <div class="chart-days">
+                <span>Пн</span><span>Вт</span><span>Ср</span><span>Чт</span><span>Пт</span><span>Сб</span><span>Вс</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel recent-orders">
+          <div class="section-heading compact">
+            <div><span class="eyebrow">ЗАКАЗЫ ИЗ ЭТОГО БРАУЗЕРА</span><h2>Бронирования</h2></div>
+            <div class="booking-filters" id="booking-filters" role="group" aria-label="Фильтр бронирований">
+              <button class="button button-ghost button-small" type="button" data-booking-filter="current" aria-pressed="true">Текущие</button>
+              <button class="button button-ghost button-small" type="button" data-booking-filter="archive" aria-pressed="false">Архив</button>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Билет</th><th>Покупатель</th><th>Дата и время</th><th>Аттракционы</th><th>Сумма</th><th>Статус</th></tr></thead>
+              <tbody id="admin-bookings"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+      <footer class="footer">
+        <a class="brand" href="../html/index.html"><span class="brand-mark" aria-hidden="true">NP</span><span>Nova <b>Park</b></span></a>
+        <span>© 2026 Nova Park. Приключения начинаются здесь.</span>
+        <a href="mailto:hello@novapark.example">Связаться с нами ↗</a>
+      </footer>
+    </main>
+  </div>
+</body>
+</html>

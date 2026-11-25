@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f0e5">
+  <title>Корзина — Nova Park</title>
+  <link rel="stylesheet" href="../css/cart.css">
+  <script src="../js/script.js" defer></script>
+  <script src="../js/cart.js" defer></script>
+  <script src="../js/booking.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="../html/index.html"><span class="brand-mark" aria-hidden="true">NP</span><span>Nova <b>Park</b></span></a>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Открыть меню" aria-expanded="false">☰</button>
+      <nav class="top-nav" id="top-nav" aria-label="Основная навигация">
+        <a class="nav-link" href="../html/index.html">Главная</a>
+        <a class="nav-link" href="../html/catalog.html">Аттракционы</a>
+        <a class="nav-link" href="../html/map.html">Карта</a>
+        <a class="nav-link" href="../html/wheel.html">Колесо фортуны</a>
+        <a class="nav-link admin-only" href="../html/admin.html" hidden>Админ-панель</a>
+      </nav>
+      <div class="top-actions">
+        <a class="account-link" href="../html/auth.html"><span class="account-icon" aria-hidden="true"></span><span>Войти</span></a>
+      </div>
+    </header>
+    <aside class="sidebar" aria-label="Дополнительная навигация">
+      <div class="side-label">МЕНЮ</div>
+      <a class="side-link" href="../html/index.html"><span>⌂</span>Главная</a>
+      <a class="side-link" href="../html/catalog.html"><span>♧</span>Аттракционы</a>
+      <a class="side-link" href="../html/map.html"><span>⌖</span>Карта парка</a>
+      <a class="side-link" href="../html/wheel.html"><span>◎</span>Колесо фортуны</a>
+      <a class="side-link active" href="../html/cart.html"><span>▣</span>Корзина</a>
+      <a class="side-link account-side-link" href="../html/auth.html"><span>♙</span><span class="account-side-label">Войти</span></a>
+      <div class="sidebar-note">
+        <span class="note-icon">✦</span>
+        <b>Время приключений</b>
+        <p>Парк открыт сегодня<br>с 10:00 до 22:00</p>
+        <span class="open-status"><i></i> Сейчас открыто</span>
+      </div>
+      <a class="side-link admin-shortcut admin-only" href="../html/admin.html" hidden><span>⚙</span>Админ-панель</a>
+    </aside>
+    <main class="main-content">
+      <section class="page active">
+        <div class="page-heading">
+          <div>
+            <span class="eyebrow">ВАШ ВЫБОР</span>
+            <h1>Корзина</h1>
+            <p>Проверь аттракционы и количество гостей.</p>
+          </div>
+        </div>
+        <div class="cart-layout">
+          <section class="cart-panel panel" aria-labelledby="cart-items-title">
+            <div class="cart-panel-heading">
+              <h2 id="cart-items-title">Аттракционы <span id="cart-item-count">0</span></h2>
+              <button class="cart-clear-button" id="cart-clear" type="button" hidden>Очистить корзину</button>
+            </div>
+            <div id="cart-feedback" class="cart-feedback" role="status" aria-live="polite"></div>
+            <div id="cart-items" class="cart-items"></div>
+            <div id="cart-empty" class="cart-empty" hidden>
+              <span class="cart-empty-icon" aria-hidden="true">▱</span>
+              <h2>Корзина пока пуста</h2>
+              <p>Выбери аттракцион в каталоге, и он появится здесь.</p>
+              <a class="button button-ghost" href="../html/catalog.html">К аттракционам</a>
+            </div>
+          </section>
+          <aside class="cart-summary panel">
+            <span class="eyebrow">ОФОРМЛЕНИЕ БРОНИ</span>
+            <h2>Бронь билетов</h2>
+            <p id="cart-booking-empty">Добавь аттракционы и гостей, чтобы начать оформление.</p>
+            <div id="cart-booking-controls" hidden>
+              <section class="booking-group" aria-labelledby="booking-date-title">
+                <h3 class="booking-group-title" id="booking-date-title"><span>01</span>Дата посещения</h3>
+                <div class="calendar-head">
+                  <button class="icon-button" id="prev-month" type="button" aria-label="Предыдущий месяц">←</button>
+                  <h3 id="calendar-month"></h3>
+                  <button class="icon-button" id="next-month" type="button" aria-label="Следующий месяц">→</button>
+                </div>
+                <div class="calendar-grid calendar-weekdays" aria-hidden="true">
+                  <span>Пн</span><span>Вт</span><span>Ср</span><span>Чт</span><span>Пт</span><span>Сб</span><span>Вс</span>
+                </div>
+                <div class="calendar-grid calendar-days" id="calendar-days" aria-label="Выберите дату посещения"></div>
+                <div class="summary-row"><span>Выбрана:</span><b id="summary-date">Выберите дату</b></div>
+              </section>
+              <section class="booking-group" aria-labelledby="booking-order-title">
+                <h3 class="booking-group-title" id="booking-order-title"><span>02</span>Состав брони</h3>
+                <div class="summary-row"><span>Аттракционов:</span><b id="cart-summary-count">0</b></div>
+                <div class="summary-row"><span>Гости:</span><b id="cart-guests-summary">Не указаны</b></div>
+              </section>
+              <section class="booking-group" aria-labelledby="booking-price-title">
+                <h3 class="booking-group-title" id="booking-price-title"><span>03</span>Стоимость</h3>
+                <div class="summary-row"><span>Сумма:</span><b id="summary-subtotal">0 ₽</b></div>
+                <div class="summary-row"><span>Приз:</span><b id="summary-reward">Нет</b></div>
+                <div class="summary-row"><span>Скидка:</span><b id="summary-discount">0 ₽</b></div>
+                <div class="summary-total"><span>К оплате:</span><b id="summary-total">0 ₽</b></div>
+              </section>
+              <section class="booking-group" aria-labelledby="booking-account-title">
+                <h3 class="booking-group-title" id="booking-account-title"><span>04</span>Подтверждение</h3>
+                <label class="booking-email">Email для брони<input id="booking-email" type="email" placeholder="name@example.com" maxlength="254" autocomplete="email" required></label>
+                <button class="button button-primary full-width" id="book-tickets" type="button">Перейти к оплате <span aria-hidden="true">→</span></button>
+                <small class="secure-note">Для бронирования необходимо войти или зарегистрироваться.</small>
+              </section>
+              <div class="booking-internal-values" hidden>
+                <span id="summary-adult"></span>
+                <span id="summary-child"></span>
+                <span id="summary-attractions"></span>
+                <div id="booking-attraction-list"></div>
+              </div>
+            </div>
+            <div class="booking-message" id="booking-message" role="status" aria-live="polite"></div>
+            <a class="cart-back-link" href="../html/catalog.html">← Продолжить выбор</a>
+          </aside>
+        </div>
+      </section>
+      <footer class="footer">
+        <a class="brand" href="../html/index.html"><span class="brand-mark" aria-hidden="true">NP</span><span>Nova <b>Park</b></span></a>
+        <span>© 2026 Nova Park. Приключения начинаются здесь.</span>
+        <a href="mailto:hello@novapark.example">Связаться с нами ↗</a>
+      </footer>
+    </main>
+  </div>
+</body>
+</html>

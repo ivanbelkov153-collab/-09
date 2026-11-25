@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f0e5">
+  <meta name="description" content="Nova Park — яркие эмоции и незабываемые впечатления для всей семьи.">
+  <title>Nova Park — главная</title>
+  <link rel="stylesheet" href="../css/home.css">
+  <script src="../js/script.js" defer></script>
+  <script src="../js/home.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="../html/index.html"><span class="brand-mark" aria-hidden="true">NP</span><span>Nova <b>Park</b></span></a>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Открыть меню" aria-expanded="false">☰</button>
+      <nav class="top-nav" id="top-nav" aria-label="Основная навигация">
+        <a class="nav-link active" href="../html/index.html">Главная</a>
+        <a class="nav-link" href="../html/catalog.html">Аттракционы</a>
+        <a class="nav-link" href="../html/map.html">Карта</a>
+        <a class="nav-link" href="../html/wheel.html">Колесо фортуны</a>
+        <a class="nav-link admin-only" href="../html/admin.html" hidden>Админ-панель</a>
+      </nav>
+      <div class="top-actions">
+        <a class="account-link" href="../html/auth.html"><span class="account-icon" aria-hidden="true"></span><span>Войти</span></a>
+      </div>
+    </header>
+    <aside class="sidebar" aria-label="Дополнительная навигация">
+      <div class="side-label">МЕНЮ</div>
+      <a class="side-link active" href="../html/index.html"><span>⌂</span>Главная</a>
+      <a class="side-link" href="../html/catalog.html"><span>♧</span>Аттракционы</a>
+      <a class="side-link" href="../html/map.html"><span>⌖</span>Карта парка</a>
+      <a class="side-link" href="../html/wheel.html"><span>◎</span>Колесо фортуны</a>
+      <a class="side-link" href="../html/cart.html"><span>▣</span>Корзина</a>
+      <a class="side-link account-side-link" href="../html/auth.html"><span>♙</span><span class="account-side-label">Войти</span></a>
+      <div class="sidebar-note">      <span class="note-icon">✦</span>
+      <b>Время приключений</b>
+      <p>Парк открыт сегодня<br>с 10:00 до 22:00</p>
+      <span class="open-status"><i></i> Сейчас открыто</span></div>
+      <a class="side-link admin-shortcut admin-only" href="../html/admin.html" hidden><span>⚙</span>Админ-панель</a>
+    </aside>
+    <main class="main-content"><section class="page active" aria-labelledby="home-title">
+      <div class="hero">
+        <img class="hero-image" src="https://moscow-sun.ru/upload/iblock/103/qzd5iu9j8vyribo5q8s1jghfyoshqd75.jpg" alt="Аттракционы и американские горки в парке развлечений">
+        <div class="hero-shade"></div>
+        <div class="hero-content">
+          <span class="eyebrow"><span class="live-dot"></span> ОТКРЫТЫ КАЖДЫЙ ДЕНЬ · 10:00—22:00</span>
+          <h1 id="home-title">Выходной<br>в <span>Nova Park</span></h1>
+          <p>Карусели для малышей, горки для тех, кто постарше.<br class="desktop-break"> Выбирайте, с чего начать.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="../html/catalog.html">Выбрать аттракционы <span>→</span></a>
+            <a class="button button-ghost" href="../html/map.html">Посмотреть карту</a>
+          </div>
+          <div class="hero-note">Можно провести здесь весь день</div>
+        </div>
+      </div>
+      <div class="stats-row">
+        <div class="stat-item"><span class="stat-icon">01</span><div><b>6 аттракционов</b><small>в каталоге парка</small></div></div>
+        <div class="stat-item"><span class="stat-icon">02</span><div><b>10:00—22:00</b><small>открыты ежедневно</small></div></div>
+        <div class="stat-item"><span class="stat-icon">03</span><div><b>Для всей семьи</b><small>детям и взрослым</small></div></div>
+        <div class="stat-item"><span class="stat-icon">04</span><div><b>Бронирование онлайн</b><small>выберите дату визита</small></div></div>
+      </div>
+      <section class="section-block">
+        <div class="section-heading">
+          <div><span class="eyebrow">АТТРАКЦИОНЫ</span><h2>Что попробуем первым?</h2></div>
+          <a class="text-link" href="../html/catalog.html">Весь список <span>→</span></a>
+        </div>
+        <div class="attraction-grid" id="home-attractions"></div>
+        <template id="attraction-image-sources">
+          <img data-attraction-name="Американские горки" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGABAwS0ufJXAPXk1ZATOAM-xJrTc2cSB9Zh-8kofPFQ&s=10" alt="Американские горки">
+          <img data-attraction-name="Большая карусель" src="https://moscow-sun.ru/upload/iblock/103/qzd5iu9j8vyribo5q8s1jghfyoshqd75.jpg" alt="Карусель и горки в парке развлечений">
+          <img data-attraction-name="Башня падения" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJgfFJzV2ytOoG0HX9LblXHTg2E606kIdlKENsUyduKbEdWXc6hhCrhRdf&s=10" alt="Посетители на аттракционе">
+          <img data-attraction-name="Колесо обозрения" src="https://moscow-sun.ru/upload/iblock/103/qzd5iu9j8vyribo5q8s1jghfyoshqd75.jpg" alt="Колесо обозрения и аттракционы парка">
+          <img data-attraction-name="Волшебный сад" src="https://moscow-sun.ru/upload/iblock/103/qzd5iu9j8vyribo5q8s1jghfyoshqd75.jpg" alt="Парк развлечений в солнечный день">
+          <img data-attraction-name="Автодром" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGABAwS0ufJXAPXk1ZATOAM-xJrTc2cSB9Zh-8kofPFQ&s=10" alt="Посетители на аттракционе ярмарки">
+        </template>
+      </section>
+      <section class="promo-banner">
+        <div class="promo-copy">
+          <span class="eyebrow">ПЕРЕД ПОЕЗДКОЙ</span>
+          <h2>Выберите дату<br><span>и приезжайте</span></h2>
+          <p>Посмотрите доступные даты и оформите билеты заранее.</p>
+          <a class="button button-primary" href="../html/catalog.html">Выбрать аттракционы <span>→</span></a>
+        </div>
+        <div class="promo-orbit"><span>ЧАСЫ РАБОТЫ</span><strong>10—22</strong><i>каждый день</i></div>
+      </section>
+    </section>
+    <footer class="footer">
+      <a class="brand" href="../html/index.html"><span class="brand-mark" aria-hidden="true">NP</span><span>Nova <b>Park</b></span></a>
+      <span>© 2026 Nova Park. Приключения начинаются здесь.</span>
+      <a href="mailto:hello@novapark.example">Связаться с нами ↗</a>
+    </footer>
+    </main>
+  </div>
+</body>
+</html>
